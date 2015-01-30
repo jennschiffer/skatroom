@@ -44,6 +44,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var connectedUsers = [];
 var chatHistory = [];
+var CHAT_BACKLOG_LENGTH = 10;
 
 server.listen(4321);
 
@@ -54,7 +55,7 @@ io.sockets.on('connection', function (socket) {
     if ( data.chat ) {
       // send messages or users
       io.sockets.emit('message',data);   
-      chatHistory.push(data.chat);
+      addToChatHistory(data.chat);
     } 
     else if ( data.activeUser ) {
       connectedUsers.push({
@@ -86,7 +87,7 @@ io.sockets.on('connection', function (socket) {
       text: connectedUsers[removalIndex].nickname + ' has left the room',
       timestamp: Date.now()
     };
-    chatHistory.push(leaveMessage);
+    addToChatHistory(leaveMessage);
 	  
     // send message that user left
     io.sockets.emit('message', { chat: leaveMessage }); 
@@ -97,3 +98,11 @@ io.sockets.on('connection', function (socket) {
     
   });
 });
+
+/** helpers **/
+function addToChatHistory(data) {
+  if (chatHistory.length >= CHAT_BACKLOG_LENGTH) {
+    chatHistory.splice(0,1);
+  }
+  chatHistory.push(data);
+}
