@@ -9,7 +9,7 @@ window.onload = function() {
     banter;
     
   var copy = {
-    enteredTheRoom: 'has entered the room',
+    enteredTheRoom: 'has entered the bathroom in stall',
     disconnected: 'You have been disconnected.',
   };
   
@@ -52,8 +52,8 @@ window.onload = function() {
       // send user to room list
       socket.emit('send', { activeUser: userInfo.nickname });
       
-      // send message that userInfo.nickname has entered room
-      system.message = userInfo.nickname + ' ' + copy.enteredTheRoom;
+      // send message that userInfo.nickname has entered bathroom stall
+      system.message = userInfo.nickname + ' ' + copy.enteredTheRoom + ' ' + userInfo.stall;
       sendMessage(system.name, system.color, system.message);
     });
     
@@ -84,6 +84,7 @@ window.onload = function() {
     socket.on('disconnect',function() {
       document.forms[0].getElementsByTagName('label')[0].innerHTML = copy.disconnected;
       textInput.style.display = 'none';
+      window.open('/logoff','_self');
     });
   };
   
@@ -183,13 +184,16 @@ window.onload = function() {
     // check for skatroom cookies    
     var cookies = getCookies();
     
+    // get stall name from url
+    var stallName = window.location.search.replace('?','');
+    
     if ( cookies.skatroom) {
       initSocket();
       userInfo = JSON.parse( cookies.skatroom );
     }
     else {
       // if no cookies, redirect to login
-      document.location = '/login';
+      document.location = '/login/?' + stallName;
     }
 
   }());

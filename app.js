@@ -12,11 +12,11 @@ app.use(express.static(__dirname + '/public'));
 
 // index
 app.get('/', function(req, resp) {
-    resp.sendfile(__dirname + '/views/index.html');
+  resp.sendfile(__dirname + '/views/index.html');
 });
 
 // log in
-app.get('/login', function(req, resp) {
+app.get('/login/', function(req, resp) {
 	resp.sendfile(__dirname + '/views/login.html');
 });
 
@@ -30,7 +30,7 @@ app.get('/logoff', function(req, resp) {
 app.post('/', function(req, resp) {
   var data = {
     nickname : req.body.nickname,
-    stall : req.body.stall,
+    stall : req.body.stall.replace(/%20/g,' '),
     authentic : true
   };
   dataJSON = JSON.stringify(data);
@@ -49,48 +49,48 @@ server.listen(4321);
 
 io.sockets.on('connection', function (socket) {
   
-    socket.on('send', function (data) { 
-        if ( data.chat ) {
-            // send messages or users
-            io.sockets.emit('message',data);            
-        } 
-        else if ( data.activeUser ) {
-	        connectedUsers.push({
-	        	nickname: data.activeUser,
-	        	clientID: socket.id
-	        });
-	        io.sockets.emit('message', { updateRoom: connectedUsers });
-        }
-    });
+  socket.on('send', function (data) { 
+    if ( data.chat ) {
+      // send messages or users
+      io.sockets.emit('message',data);      
+    } 
+    else if ( data.activeUser ) {
+      connectedUsers.push({
+     	  nickname: data.activeUser,
+     	  clientID: socket.id
+      });
+      io.sockets.emit('message', { updateRoom: connectedUsers });
+    }
+  });
   
-    socket.on('disconnect', function (data) { 
-	   
-	   // remove user from room list
-	   var i = 0;
-	   var removalIndex;
-	   while ( i < connectedUsers.length ) {
-		   if ( connectedUsers[i].clientID == socket.id ) {
-			   removalIndex = i;
-			   i = connectedUsers.length + 1;
-		   }
-		   else {
-			   i++;
-		   }
-	   }
-	   
-	   var leaveMessage = {
-	   		nick: 'skatroom',
-	        color: 'gray',
-	        text: connectedUsers[removalIndex].nickname + ' has left the room',
-	        timestamp: Date.now()
-	   };
+  socket.on('disconnect', function (data) { 
+    
+	  // remove user from room list
+	  var i = 0;
+	  var removalIndex;
+	  while ( i < connectedUsers.length ) {
+	    if ( connectedUsers[i].clientID == socket.id ) {
+		    removalIndex = i;
+		    i = connectedUsers.length + 1;
+	    }
+	    else {
+		    i++;
+	    }
+    }
+    
+    var leaveMessage = {
+      nick: 'skatroom',
+      color: 'gray',
+      text: connectedUsers[removalIndex].nickname + ' has left the room',
+      timestamp: Date.now()
+    };
 	  
-	   // send message that user left
-	   io.sockets.emit('message', { chat: leaveMessage }); 
-	   
-	   // send new user list
-	   connectedUsers.splice(removalIndex, 1);
-	   io.sockets.emit('message', { updateRoom: connectedUsers });
-	   
-    });
+    // send message that user left
+    io.sockets.emit('message', { chat: leaveMessage }); 
+    
+    // send new user list
+    connectedUsers.splice(removalIndex, 1);
+    io.sockets.emit('message', { updateRoom: connectedUsers });
+    
+  });
 });

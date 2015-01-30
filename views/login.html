@@ -19,8 +19,8 @@
     </p>
     
     <p>
-      you are in stall <strong>WOWOWOW TEST STALL NAME FROM URL</strong>
-      <input type="hidden" name="stall" value="partyboy69" />
+      you are in stall <strong id="stall-display">partyboy69</strong>
+      <input type="hidden" id="stall" name="stall" value="partyboy69" />
     </p>
   
     <input type="submit" value="submit" />
@@ -28,6 +28,14 @@
 
 
 <script src="/js/skatroom-admin.js"></script>
-
+<script type="text/javascript">
+  (function(){
+    var stallNameGet = window.location.search.replace('?','');
+    var stallNameInput = document.getElementById('stall');
+    var stallNameDisplay = document.getElementById('stall-display');
+    stallNameInput.value = stallNameGet;
+    stallNameDisplay.innerHTML = stallNameGet.replace(/%20/g,' ');
+  })()
+</script>
 </body>
 </html>
