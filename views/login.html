@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>skatroom</title>
   <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
@@ -23,7 +24,7 @@
       <input type="hidden" id="stall" name="stall" value="partyboy69" />
     </p>
   
-    <input type="submit" value="~*enter the skatroom*~" />
+    <input type="submit" value="~*enter*~" />
   </form>
 
 
@@ -33,8 +34,10 @@
     var stallNameGet = window.location.search.replace('?','');
     var stallNameInput = document.getElementById('stall');
     var stallNameDisplay = document.getElementById('stall-display');
-    stallNameInput.value = stallNameGet;
-    stallNameDisplay.innerHTML = stallNameGet.replace(/%20/g,' ');
+    if ( stallNameGet ) {
+      stallNameInput.value = stallNameGet;
+      stallNameDisplay.innerHTML = stallNameGet.replace(/%20/g,' ');
+    }
   })()
 </script>
 </body>
