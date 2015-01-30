@@ -1,15 +1,18 @@
 * { -moz-box-sizing: border-box; box-sizing: border-box; }
-body { padding: 20px; font-family: monospace; }
+body { padding: 20px; font-family: monospace; font-size: 1em;}
 a { color: #333; }
 h1 { margin-top: 0; }
 
 #skatroom,
-#login { width: 100%; max-width: 600px; min-width: 225px; }
+#login { width: 100%; }
 #skatroom { display: none; }
+#login { text-align: center; }
 
 /* login form */
-#login { }
+#login { font-size: 2em; }
 #login label { display: block; font-weight: bold; }
+#login input[type="text"] { font-size: 1em; padding: 10px; width: 100%; }
+#login input[type="submit"] { font-size: .8em; }
 
 /* message window */
 #skatroom-messages { height: 300px; overflow-y: scroll; border: 1px dashed #000; padding: 10px; }
@@ -21,9 +24,11 @@ h1 { margin-top: 0; }
 #active-users li { display: inline-block; margin: auto 5px; font-weight: bold; padding: 2px 5px; background: #efefef; }
 
 /* message form*/
-#send-message { background: #0167CC; padding: 5px; color: #fff;}
+#send-message { background: #864e11; padding: 5px; color: #fff; font-size: 1.5em; }
 #send-message label { display: block; }
-#send-message textarea { width: 100%; margin: 10px 0 0; }
+#send-message input[type="text"] { display: block; width: 100%; margin: 0 0 5px; font-size: 1em; padding: 10px; }
+#send-message input[type="submit"] { font-size: 1em; }
+
 
 /* messages */
 .nick { font-weight: bold; }
