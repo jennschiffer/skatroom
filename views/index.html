@@ -9,7 +9,7 @@
 <body>
 
   <div id="skatroom">
-    <h1>skatroom <small><a href="/logoff">log off (WOWOWOW for testing)</a></small></h1>
+    <h1>skatroom</h1>
 
     <div id="room-info">
     	also on the john: 
@@ -17,12 +17,26 @@
     </div>
     
     <form id="send-message" action="">
-      <label for="message">type message</label>
-      <textarea  type="text" name="message"></textarea>
-      <button id="submit-message">send message</button>
+      <input type="text" name="message" />
+      <input type="submit" value="send message" id="submit-message" />
     </form>
     
     <ul id="skatroom-messages"></ul>
+    
+    <div id="footer">
+      
+      <section id="emoji">
+        we can put emoji code info here!
+        <ul>
+          <li>:poop: shows [poop emoji]</li>
+          <li>:toilet: shows [toilet emoji]</li>
+        </ul>
+      </section>
+      
+      <section id="logoff">
+        <small><a href="/logoff">log off</a></small>
+      </section>
+    </div>
 
   </div>
 
