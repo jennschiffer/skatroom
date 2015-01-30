@@ -1,5 +1,5 @@
 system = {
 	io: 'http://localhost:3000',
-    name: 'jschat',
+  name: 'web-enabled-bathroom',
 	color: 'gray'
 };

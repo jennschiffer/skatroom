@@ -1,28 +1,28 @@
 window.onload = function() {
   
-    var loginForm = document.forms[0];
-    var loginAlert = document.getElementById('login-alert');
+  var loginForm = document.forms[0];
+  var loginAlert = document.getElementById('login-alert');
+  
+  /*** INIT LOGIN ***/
+  
+  var init = (function() {
     
-    /*** INIT LOGIN ***/
-    
-    var init = (function() {
-        
-        // login event
-        loginForm.onsubmit = function() {
+    // login event
+    loginForm.onsubmit = function() {
 
 			var user = {
 				nickname : loginForm.nickname.value,
-				password : loginForm.password.value
+				stall : loginForm.stall.value
 			};
-			var userRequest = 'nickname=' + user.nickname + '&password=' + user.password;
-            
-            if ( !user.nickname || !user.password ) {
-                loginAlert.innerHTML = '<p>you must enter a username and password</p>';
-                return false;
-            }
-    
-        }
+			var userRequest = 'nickname=' + user.nickname + '&stall=' + user.stall;
+      
+      if ( !user.nickname ) {
+        loginAlert.innerHTML = '<p>you must enter a nickname</p>';
+        return false;
+      }
+  
+    }
 
-    }());
-    
+  }());
+  
 };

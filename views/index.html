@@ -1,28 +1,30 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-    <title>jsChat</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="/img/jschat.ico" />
+  <meta charset="utf-8" />
+  <title>web enabled bathroom</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
 <body>
 
-    <div id="jsChat">
-        <h1>jsChat <small><a href="/logoff">log off</a> | <a id="mute-switch" href="#mute">mute</a></small></h1>
+  <div id="jsChat">
+    <h1>web enabled bathroom <small><a href="/logoff">log off</a></small></h1>
 
-        <ul id="jsChat-messages"></ul>
-        
-        <form id="send-message" action="">
-            <label for="message">type message & hit enter</label>
-            <textarea  type="text" name="message"></textarea>
-        </form>
-        
-        <div id="room-info">
-        	in the room: 
-        	<ul id="active-users"></ul>
-        </div>
+    <div id="room-info">
+    	in the room: 
+    	<ul id="active-users"></ul>
     </div>
+    
+    <form id="send-message" action="">
+      <label for="message">type message & hit enter</label>
+      <textarea  type="text" name="message"></textarea>
+      <button id="submit-message">send message</button>
+    </form>
+    
+    <ul id="jsChat-messages"></ul>
+
+  </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/config.js"></script>

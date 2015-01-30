@@ -1,29 +1,30 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-    <title>jsChat</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta charset="utf-8" />
+  <title>web enabled bathroom</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
 <body>
 
-    <form id="login" method="post" action="/">
-        <h1>log in to jsChat</h1>
-        
-        <div id="login-alert"></div>
-        
-        <p>
-            <label for="nick">nickname:</label>
-            <input type="text" name="nickname" />
-        </p>
+  <form id="login" method="post" action="/">
+    <h1>check in to web enabled bathroom</h1>
     
-        <p>
-            <label for="password">password:</label>
-            <input type="password" name="password" />
-        </p>
-
-        <input type="submit" value="submit" />
-    </form>
+    <div id="login-alert"></div>
+    
+    <p>
+      <label for="nick">nickname:</label>
+      <input type="text" name="nickname" />
+    </p>
+    
+    <p>
+      you are in stall <strong>WOWOWOW</strong>
+      <input type="hidden" name="stall" value="partyboy69" />
+    </p>
+  
+    <input type="submit" value="submit" />
+  </form>
 
 
 <script src="/js/jschat-admin.js"></script>
