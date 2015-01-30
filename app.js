@@ -4,8 +4,9 @@
 var express = require('express');
 var app = express();
 
-app.use(express.bodyParser());
-app.use(express.cookieParser('my secret here'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.cookieParser('secretskatroomwowowow'));
 app.use(express.static(__dirname + '/public'));
 
 
@@ -29,7 +30,7 @@ app.get('/logoff', function(req, resp) {
 app.post('/', function(req, resp) {
   var data = {
     nickname : req.body.nickname,
-    stall : req.body.password,
+    stall : req.body.stall,
     authentic : true
   };
   dataJSON = JSON.stringify(data);
