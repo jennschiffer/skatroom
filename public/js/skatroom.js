@@ -56,6 +56,14 @@ window.onload = function() {
       system.message = userInfo.nickname + ' ' + copy.enteredTheRoom + ' ' + userInfo.stall;
       sendMessage(system.name, system.color, system.message);
     });
+
+    socket.on('history', function(data) {
+      console.log(data);
+      data.forEach(function(message) {
+        console.log(message);
+        updateMessageWindow(message);
+      });
+    });
     
     socket.on('message',function(data) {
       if ( data.chat ) {
