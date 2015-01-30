@@ -1,7 +1,10 @@
 * { -moz-box-sizing: border-box; box-sizing: border-box; }
-body { padding: 20px; font-family: monospace; font-size: 1em;}
+body { padding: 0 20px; font-family: monospace; font-size: 1em; background-color: #46A4C5}
 a { color: #333; }
 h1 { margin-top: 0; }
+img { max-width: 100%; }
+
+#logo { width: 80%; display: block; margin: 0 auto; }
 
 #skatroom,
 #login { width: 100%; }
@@ -15,7 +18,7 @@ h1 { margin-top: 0; }
 #login input[type="submit"] { font-size: .8em; }
 
 /* message window */
-#skatroom-messages { height: 300px; overflow-y: scroll; border: 1px dashed #000; padding: 10px; }
+#skatroom-messages { background-color: #fff; height: 300px; overflow-y: scroll; border: 1px dashed #000; padding: 10px; font-size: 1.1em; }
 #skatroom-messages li { margin: 10px 0; list-style: none; }
 #skatroom-messages li.system { font-style: italic; color: #999; }
 
@@ -31,4 +34,4 @@ h1 { margin-top: 0; }
 
 /* messages */
 .nick { font-weight: bold; }
-.emoji { max-height: 25px; }
+.emoji { max-height: 25px; vertical-align: middle; }
