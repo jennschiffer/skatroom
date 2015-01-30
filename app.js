@@ -1,7 +1,4 @@
-/*** jsChat app.js ***/
-
-var jsChatAuthenticatedUsers = [];
-
+/*** skatroom app.js ***/
 
 /* express */
 var express = require('express');
@@ -24,7 +21,7 @@ app.get('/login', function(req, resp) {
 
 // log off
 app.get('/logoff', function(req, resp) {
-	resp.clearCookie('jschat');
+	resp.clearCookie('skatroom');
 	resp.sendfile(__dirname + '/views/login.html');
 });
 
@@ -36,7 +33,7 @@ app.post('/', function(req, resp) {
     authentic : true
   };
   dataJSON = JSON.stringify(data);
-  resp.cookie('jschat', dataJSON);
+  resp.cookie('skatroom', dataJSON);
   resp.sendfile(__dirname + '/views/index.html');
 });
 
@@ -47,7 +44,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var connectedUsers = [];
 
-server.listen(3000);
+server.listen(4321);
 
 io.sockets.on('connection', function (socket) {
   
@@ -81,7 +78,7 @@ io.sockets.on('connection', function (socket) {
 	   }
 	   
 	   var leaveMessage = {
-	   		nick: 'jschat',
+	   		nick: 'skatroom',
 	        color: 'gray',
 	        text: connectedUsers[removalIndex].nickname + ' has left the room',
 	        timestamp: Date.now()

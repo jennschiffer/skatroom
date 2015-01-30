@@ -17,11 +17,11 @@ window.onload = function() {
 
   /*** INIT SOCKETS AND CHAT ***/
 
-  var initjsChat = function() {
+  var initSkatroom = function() {
     
-    /*** jsChatroom and its events ***/
-    document.getElementById('jsChat').style.display = 'block';
-    messageContainer = document.getElementById('jsChat-messages');
+    /*** scatroom and its events ***/
+    document.getElementById('skatroom').style.display = 'block';
+    messageContainer = document.getElementById('skatroom-messages');
     submitButton = document.getElementById('submit-message');
     activeUsersList = document.getElementById('active-users');
     textInput = document.forms[0].message;
@@ -47,7 +47,7 @@ window.onload = function() {
     socket = io.connect(system.io);
     
     socket.on('connect',function() {
-      initjsChat();
+      initSkatroom();
       
       // send user to room list
       socket.emit('send', { activeUser: userInfo.nickname });
@@ -180,12 +180,12 @@ window.onload = function() {
   
   var init = (function() {
   
-    // check for jschat cookies    
+    // check for skatroom cookies    
     var cookies = getCookies();
     
-    if ( cookies.jschat) {
+    if ( cookies.skatroom) {
       initSocket();
-      userInfo = JSON.parse( cookies.jschat );
+      userInfo = JSON.parse( cookies.skatroom );
     }
     else {
       // if no cookies, redirect to login

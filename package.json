@@ -1,5 +1,5 @@
 {
-  "name": "jsChat",
+  "name": "skatroom",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "express": "3.4.4",
-    "socket.io": "*",
-    "sqlite3": "~2.1.19"
+    "socket.io": "*"
   }
 }

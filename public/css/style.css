@@ -3,18 +3,18 @@ body { padding: 20px; font-family: monospace; }
 a { color: #333; }
 h1 { margin-top: 0; }
 
-#jsChat,
+#skatroom,
 #login { width: 100%; max-width: 600px; min-width: 225px; }
-#jsChat { display: none; }
+#skatroom { display: none; }
 
 /* login form */
 #login { }
 #login label { display: block; font-weight: bold; }
 
 /* message window */
-#jsChat-messages { height: 300px; overflow-y: scroll; border: 1px dashed #000; padding: 10px; }
-#jsChat-messages li { margin: 10px 0; list-style: none; }
-#jsChat-messages li.system { font-style: italic; color: #999; }
+#skatroom-messages { height: 300px; overflow-y: scroll; border: 1px dashed #000; padding: 10px; }
+#skatroom-messages li { margin: 10px 0; list-style: none; }
+#skatroom-messages li.system { font-style: italic; color: #999; }
 
 /* active users list */
 #active-users { margin: 10px 0; padding: 0; list-style: none; display: inline-block; }

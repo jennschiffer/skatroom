@@ -1,5 +1,5 @@
 system = {
-	io: 'http://localhost:3000',
+	io: 'http://localhost:4321',
   name: 'web-enabled-bathroom',
 	color: 'gray'
 };

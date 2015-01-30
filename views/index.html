@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>web enabled bathroom</title>
+  <title>skatroom</title>
   <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
 <body>
 
-  <div id="jsChat">
-    <h1>web enabled bathroom <small><a href="/logoff">log off</a></small></h1>
+  <div id="skatroom">
+    <h1>skatroom <small><a href="/logoff">log off (WOWOWOW for testing)</a></small></h1>
 
     <div id="room-info">
-    	in the room: 
+    	also on the john: 
     	<ul id="active-users"></ul>
     </div>
     
     <form id="send-message" action="">
-      <label for="message">type message & hit enter</label>
+      <label for="message">type message</label>
       <textarea  type="text" name="message"></textarea>
       <button id="submit-message">send message</button>
     </form>
     
-    <ul id="jsChat-messages"></ul>
+    <ul id="skatroom-messages"></ul>
 
   </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/config.js"></script>
-<script src="/js/jschat.js"></script>
+<script src="/js/skatroom.js"></script>
 
 </body>
 </html>
