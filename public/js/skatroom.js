@@ -82,7 +82,6 @@ window.onload = function() {
     });
     
     socket.on('disconnect',function() {
-      document.forms[0].getElementsByTagName('label')[0].innerHTML = copy.disconnected;
       textInput.style.display = 'none';
       window.open('/logoff','_self');
     });
@@ -167,6 +166,7 @@ window.onload = function() {
   };
   
   var processMessage = function(message) {
+    
     // urls within text
     var regExURL = /(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/g;
     message = stripHTML(message);
@@ -174,6 +174,13 @@ window.onload = function() {
       return '<a href="' + url + '">' + url + '</a>';
     });
     
+    // :emoji: within text - add emoji gif files in /public/assets/emoji
+    var regExEmoji = /\:[a-zA-Z0-9\-\.]+\:?/g;
+    
+    message = message.replace(regExEmoji, function(emojiName) {
+      return '<img class="emoji" src="/assets/emoji/' + emojiName.replace(/:/g, '') + '.gif" alt=":' + emojiName + '" + title="' + emojiName + '" />'; 
+    });
+
     return message;
   };
   
