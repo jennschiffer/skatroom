@@ -26,6 +26,30 @@ app.get('/logoff', function(req, resp) {
 	resp.sendfile(__dirname + '/views/login.html');
 });
 
+// receive data
+app.post('/post', function(req, resp) {
+  var tpData = {
+    stallNumber : req.param('stallNumber'),
+    tpAmount : req.param('tpAmount')
+  }
+  
+  /*var localSocket = io.connect('http://104.236.228.105:4321');
+  localSocket.on('connect',function() {
+    var message = {
+      nick: 'skatroom',
+      text: '',
+      timestamp: Date.now()
+    };
+    localSocket.emit('send', { chat: message });
+  }*/
+});
+
+// send history
+app.get('/history', function(req, resp) {
+  console.log('history requested');
+  resp.send(chatHistory);
+})
+
 // receive login post data
 app.post('/', function(req, resp) {
   var data = {
@@ -45,9 +69,6 @@ var io = require('socket.io').listen(server);
 var connectedUsers = [];
 var chatHistory = [];
 var CHAT_BACKLOG_LENGTH = 10;
-
-// test with max
-
 
 server.listen(4321);
 
