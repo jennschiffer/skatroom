@@ -65,9 +65,9 @@ app.get('/post', function(req, resp) {
   io.sockets.emit('message', { chat: message });   
   addToChatHistory(message);
 
-  resp.writeHead(200, { 'Content-Type': 'application/json', "Access-Control-Allow-Origin":"*" });
-  resp.write("{success: true}");
-  resp.end();
+  //resp.writeHead(200, { 'Content-Type': 'application/json', "Access-Control-Allow-Origin":"*" });
+  //resp.write("{success: true}");
+  //resp.end();
 
 });
 
