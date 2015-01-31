@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>skatroom</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body id="display">
+
+  <div id="skatroom">
+    <img id="logo" src="/assets/logo.png" alt="skatroom" />
+        
+    <div id="room-info">
+    	currently on the john: 
+    	<ul id="active-users"></ul>
+    </div>
+    
+    <ul id="skatroom-messages"></ul>
+    
+  </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/config.js"></script>
+<script src="/js/skatroom.js"></script>
+
+</body>
+</html>
