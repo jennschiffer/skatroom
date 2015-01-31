@@ -53,9 +53,10 @@ server.listen(4321);
 
 io.sockets.on('connection', function (socket) {
   io.sockets.emit('history', chatHistory);
+  console.log('connection made');
   
   socket.on('send', function (data) { 
-    console.log('something sent', data);
+    console.log('data sent: ', data);
     if ( data.chat ) {
       // send messages or users
       io.sockets.emit('message',data);   
