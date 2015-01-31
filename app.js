@@ -46,12 +46,16 @@ var connectedUsers = [];
 var chatHistory = [];
 var CHAT_BACKLOG_LENGTH = 10;
 
+// test with max
+
+
 server.listen(4321);
 
 io.sockets.on('connection', function (socket) {
   io.sockets.emit('history', chatHistory);
   
   socket.on('send', function (data) { 
+    console.log('something sent', data);
     if ( data.chat ) {
       // send messages or users
       io.sockets.emit('message',data);   
