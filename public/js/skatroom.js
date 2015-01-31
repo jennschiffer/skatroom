@@ -50,7 +50,7 @@ window.onload = function() {
       initSkatroom();
       
       // send user to room list
-      socket.emit('send', { activeUser: userInfo.nickname });
+      socket.emit('send', { activeUser: userInfo.nickname, userStall: userInfo.stall });
       
       // send message that userInfo.nickname has entered bathroom stall
       system.message = userInfo.nickname + ' ' + copy.enteredTheRoom + ' ' + userInfo.stall;

@@ -9,6 +9,16 @@ app.use(express.urlencoded());
 app.use(express.cookieParser('secretskatroomwowowow'));
 app.use(express.static(__dirname + '/public'));
 
+/* stall number to stall name enum */
+var STALL_NUMBER_TO_NAME = {
+  1: "chipotle",
+  2: "taco bell",
+  3: "arbys",
+  4: "country kitchen buffet",
+  5: "tgi fridays",
+  6: "Applebees"
+};
+
 
 // index
 app.get('/', function(req, resp) {
@@ -32,6 +42,29 @@ app.post('/post', function(req, resp) {
     stallNumber : req.param('stallNumber'),
     tpAmount : req.param('tpAmount')
   }
+
+  var stallName = STALL_NUMBER_TO_NAME[tpData.stallNumber];
+  var username = "";
+  connectedUsers.forEach(function(userData) {
+    console.log(userData.stall);
+    console.log(stallName);
+    if (userData.stall === stallName) {
+      username = userData.nickname;
+    }
+  });
+  //<username> used <tpAmount> sheets of toilet paper in stall <stall_name>
+  var message = {
+      nick: 'skatroom',
+      text: username + " used " + tpData.tpAmount + " sheets of toilet paper in stall " + stallName,
+      timestamp: Date.now()
+  };
+
+  io.sockets.emit('message',message);   
+  addToChatHistory(message);
+
+  resp.writeHead(200, { 'Content-Type': 'application/json', "Access-Control-Allow-Origin":"*" });
+  resp.write(JSON.stringify({success: true}));
+  resp.end();
   
   /*var localSocket = io.connect('http://104.236.228.105:4321');
   localSocket.on('connect',function() {
@@ -66,6 +99,7 @@ app.post('/', function(req, resp) {
 /* socket.io */
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
+require('./sockets')(io);
 var connectedUsers = [];
 var chatHistory = [];
 var CHAT_BACKLOG_LENGTH = 10;
@@ -86,7 +120,8 @@ io.sockets.on('connection', function (socket) {
     else if ( data.activeUser ) {
       connectedUsers.push({
      	  nickname: data.activeUser,
-     	  clientID: socket.id
+     	  clientID: socket.id,
+        stall: data.userStall
       });
       io.sockets.emit('message', { updateRoom: connectedUsers });
     }
