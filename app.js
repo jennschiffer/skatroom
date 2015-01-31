@@ -65,6 +65,9 @@ app.get('/post', function(req, resp) {
   io.sockets.emit('message', { chat: message });   
   addToChatHistory(message);
 
+  resp.write("{success: true}");
+  resp.end();
+
 });
 
 // send history
@@ -89,7 +92,6 @@ app.post('/', function(req, resp) {
 /* socket.io */
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
-require('./sockets')(io);
 var connectedUsers = [];
 var chatHistory = [];
 var CHAT_BACKLOG_LENGTH = 10;
