@@ -50,6 +50,9 @@ app.get('/post', function(req, resp) {
     if (userData.stall === stallName) {
       username = userData.nickname;
     }
+    else {
+      username = 'jenn testing skatroom (lol)';
+    }
   });
   
   //<username> used <tpAmount> sheets of toilet paper in stall <stall_name>
