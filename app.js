@@ -11,12 +11,12 @@ app.use(express.static(__dirname + '/public'));
 
 /* stall number to stall name enum */
 var STALL_NUMBER_TO_NAME = {
-  1: "chipotle",
-  2: "taco bell",
-  3: "arbys",
-  4: "country kitchen buffet",
-  5: "tgi fridays",
-  6: "Applebees"
+  1: 'chipotle',
+  2: 'taco bell',
+  3: 'arbys',
+  4: 'country kitchen buffet',
+  5: 'tgi fridays',
+  6: 'Applebees'
 };
 
 
@@ -36,45 +36,32 @@ app.get('/logoff', function(req, resp) {
 	resp.sendfile(__dirname + '/views/login.html');
 });
 
-// receive data
-app.post('/post', function(req, resp) {
+// receive tp data - IF THIS DOESN'T WORK WITH MAX, TRY CHANGING APP.GET TO APP.POST ON NEXT LINE :-*
+app.get('/post', function(req, resp) {
   var tpData = {
     stallNumber : req.param('stallNumber'),
     tpAmount : req.param('tpAmount')
   }
-
+  console.log('tp data received: ', tpData);
+  
   var stallName = STALL_NUMBER_TO_NAME[tpData.stallNumber];
   var username = "";
   connectedUsers.forEach(function(userData) {
-    console.log(userData.stall);
-    console.log(stallName);
     if (userData.stall === stallName) {
       username = userData.nickname;
     }
   });
+  
   //<username> used <tpAmount> sheets of toilet paper in stall <stall_name>
   var message = {
       nick: 'skatroom',
-      text: username + " used " + tpData.tpAmount + " sheets of toilet paper in stall " + stallName,
+      text: '<strong>' + username + '</strong> used ' + tpData.tpAmount + ' sheets of toilet paper in stall <strong>' + stallName + '</strong>',
       timestamp: Date.now()
   };
 
-  io.sockets.emit('message',message);   
+  io.sockets.emit('message', { chat: message });   
   addToChatHistory(message);
 
-  resp.writeHead(200, { 'Content-Type': 'application/json', "Access-Control-Allow-Origin":"*" });
-  resp.write(JSON.stringify({success: true}));
-  resp.end();
-  
-  /*var localSocket = io.connect('http://104.236.228.105:4321');
-  localSocket.on('connect',function() {
-    var message = {
-      nick: 'skatroom',
-      text: '',
-      timestamp: Date.now()
-    };
-    localSocket.emit('send', { chat: message });
-  }*/
 });
 
 // send history

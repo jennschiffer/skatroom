@@ -50,7 +50,7 @@ window.onload = function() {
       initSkatroom();
       
       // send user to room list
-      socket.emit('send', { activeUser: userInfo.nickname, userStall: userInfo.stall });
+      socket.emit('send', { activeUser: userInfo.nickname });
       
       // send message that userInfo.nickname has entered bathroom stall
       system.message = userInfo.nickname + ' ' + copy.enteredTheRoom + ' ' + userInfo.stall;
@@ -58,9 +58,7 @@ window.onload = function() {
     });
 
     socket.on('history', function(data) {
-      console.log(data);
       data.forEach(function(message) {
-        console.log(message);
         updateMessageWindow(message);
       });
     });
