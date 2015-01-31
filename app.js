@@ -42,7 +42,7 @@ app.get('/logoff', function(req, resp) {
 });
 
 // receive tp data - IF THIS DOESN'T WORK WITH MAX, TRY CHANGING APP.GET TO APP.POST ON NEXT LINE :-*
-app.get('/post', function(req, resp) {
+app.post('/post', function(req, resp) {
   var tpData = {
     stallNumber : req.param('stallNumber'),
     tpAmount : req.param('tpAmount')
