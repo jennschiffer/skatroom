@@ -7,11 +7,13 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
-<body id="display">
+<body id="dashboard">
 
   <div id="skatroom">
-    <img id="logo" src="/assets/logo.png" alt="skatroom" />
-        
+    <div id="sidebar">
+      <p>you are now watching<p>
+      <img id="logo" src="/assets/logo.png" alt="skatroom" />
+    </div>
     <div id="room-info">
     	currently on the john: 
     	<ul id="active-users"></ul>
@@ -23,7 +25,7 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/config.js"></script>
-<script src="/js/skatroom.js"></script>
+<script src="/js/skatroom-dashboard.js"></script>
 
 </body>
 </html>
