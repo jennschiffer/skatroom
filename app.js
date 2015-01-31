@@ -25,6 +25,11 @@ app.get('/', function(req, resp) {
   resp.sendfile(__dirname + '/views/index.html');
 });
 
+// dashboard (for desktop showing message activity)
+app.get('/dashboard', function(req, resp) {
+  resp.sendfile(__dirname + '/views/dashboard.html');
+});
+
 // log in
 app.get('/login/', function(req, resp) {
 	resp.sendfile(__dirname + '/views/login.html');
