@@ -39,7 +39,7 @@ img { max-width: 100%; }
 
 /* dashboard for desktop */
 #dashboard { font-size: 2em; padding: 20px; }
-#dashboard #sidebar { float: left; width: 30%; margin-right: 50px; }
+#dashboard #sidebar { float: left; width: 30%; margin-right: 50px; color: #fff; text-align: center; font-weight: bold; font-size: 1.5em; }
 #dashboard #sidebar #logo { width: 100%: }
 #dashboard #skatroom-messages { margin-top: 10px; height: 100%; max-height: 500px;}
 #dashboard #skatroom-messages li { margin: .5em; }
